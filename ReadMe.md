@@ -29,15 +29,15 @@ Here is a screenshot of the widget running on an iPhone:
 ## Widget details
 
 The widget summarises the following data:
-- **House (load)** - the power demands of the house (in kW), along with energy usage (in kWh)
+- **House (load)** - the power currently demanded by the house (in kW), along with energy usage (in kWh)
 in the house from all sources today
-- **Solar** - the power provided by the solar array (in kW), along with total energy (in kWh) provided
+- **Solar** - the power currently provided by the solar array (in kW), along with total energy (in kWh) provided
 by the solar array today
 - **Grid (import)** - the power currently being imported by the grid (in kW), along with total 
 energy imported from the grid (in kWh) today. I don't currently include an export counter in the widget, but 
 I will look to add this soon
 - **Battery state** - the icon changes to reflect the battery's state of charge, and shows a 
-status label to indicate if it's Idle, Charging, or Discharging. A percentage is also shown, which
+status label to indicate if it's currently Idle, Charging, or Discharging. A percentage is also shown, which
 represents the state of charge
 - **Peak** - the cost of imported energy used at peak times today, and the total energy (in kWh) used at peak times today
 - **Off-Peak** - the cost of imported energy used at off-peak times today, and the total energy (in kWh) used at off-peak times today
