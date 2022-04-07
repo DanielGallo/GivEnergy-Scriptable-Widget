@@ -1,4 +1,4 @@
-# Scriptable widget for showing GivEnergy data from Home Assistant
+# Scriptable widget for showing GivEnergy usage data via Home Assistant and GivTCP
 
 This repository contains code for a [Scriptable](https://scriptable.app/) widget (for iOS) which shows power 
 and energy usage for home, solar, grid, and [GivEnergy](https://www.givenergy.co.uk/) battery storage, plus 
@@ -10,30 +10,34 @@ how to configure the data sources.
 
 ## Prerequisites
 
-There are several prerequisites
+There are several prerequisites:
 
 - **[GivEnergy inverter](https://www.givenergy.co.uk/)** - you obviously need a GivEnergy inverter connected to
 your local home network :)
 - **[Home Assistant](https://www.home-assistant.io/)** - running on the same local network (e.g. on a Raspberry Pi or home server)
-- **[GivTCP](https://github.com/GivEnergy/giv_tcp)** - this connects to your GivEnergy inverter and provides realtime data
+- **[GivTCP](https://github.com/GivEnergy/giv_tcp)** - this connects directly to your GivEnergy inverter and provides realtime data
 via an MQTT broker that Home Assistant is able to read. This needs to be running on 
 the same local network as your inverter (e.g. on a Raspberry Pi or home server)
 - **iOS device for running this widget via the [Scriptable app](https://scriptable.app/)**
 
 ## Screenshot 
+
+Here is a screenshot of the widget running on an iPhone:
+
 ![Screenshot](images/screenshot.jpg)
 
 ## Notes
 
-- It took me a while to get this working, so if you think I've forgotten to include an important step in the instructions below, 
-please let me know and I'll update them!
-- iOS limits the refresh rate of widgets on the home screen - it normally refreshes every few minutes, or sometimes longer. I've
-included a timestamp on the widget so you can see when it was last refreshed. You can also configure the widget so 
-that when it's tapped it runs the script, which will show the widget in a popup screen and cause the data to be refreshed.
+- It took me a while to get this working, and I may have missed an important step in the instructions below - if you believe 
+this is the case please let me know and I'll update them!
+- iOS limits the refresh rate of widgets on the home screen - it normally refreshes every few minutes, or sometimes longer
+(I've seen up to 10-12 minutes between refreshes sometimes). I've included a timestamp on the widget so you can see when 
+it was last refreshed. You can also configure the widget so that when it's tapped it runs the script, which will show 
+the widget in a popup screen and cause the data to be refreshed.
 
 ## Instructions
 
-1. Follow the installation instructions for [GivTCP](https://github.com/GivEnergy/giv_tcp) and set this up on 
+1. Follow the installation instructions for [GivTCP](https://github.com/GivEnergy/giv_tcp) and set this up  
 somewhere on your local network so that it's running 24/7. This runs inside a Docker container.
 2. Once GivTCP is setup, you will need to define a few settings inside the `docker-compose.yml`:
    1. `INVERTOR_IP` - set the IP address of your GivEnergy inverter (assign a static IP to the inverter via your router if possible)
@@ -151,9 +155,9 @@ example I am on the Octopus Go tariff from Octopus Energy, which has an off-peak
 ```
 
 7. The automations above will create triggers to automatically switch the tariff at the appropriate times, ensuring
-Home Assistant correctly calculates your energy costs throughout the day. **Important:** Check to make sure your 
-Home Assistant configuration is set to the right timezone (e.g. London). If it's set to UTC for example, the tariff will 
-switch at the wrong time. You can check the timezone under Configuration >> Settings >> General.
+Home Assistant correctly calculates your energy costs throughout the day. **Important:** Check to make sure Home Assistant 
+is set to the right timezone (e.g. London). If it's set to UTC for example, the tariff will 
+switch at the wrong time. You can check the timezone setting under Configuration >> Settings >> General.
 8. In Configuration >> Dashboards >> Energy, configure the sensors for Electricity grid, Solar panels, and Home battery storage.
 I used these settings:
    1. Grid consumption - `GivTCP Import Energy Today kWh`
@@ -163,13 +167,15 @@ I used these settings:
       1. Energy going in to the battery - `GivTCP Battery Charge Energy Today kWh`
       2. Energy coming out of the battery - `GivTCP Battery Discharge Energy Today kWh`
 9. Restart Home Assistant and you should soon see data under the Overview and Energy sections.
-10. Install Scriptable on your iOS device, and copy and paste the code from `givenergy_widget.js` into a new Script within
-the app. You will need to change the following settings for the code to work:
+10. Install Scriptable on your iOS device, and copy the code from `givenergy_widget.js` in this repository 
+into a new Script within the Scriptable app. You will need to set the following variables in the code for it to work:
     1. `HOME_ASSISTANT_BASE_URL` - Set this to the main URL where your Home Assistant server is running, e.g. 
        `http://homeassistant.local`
     2. `HOME_ASSISTANT_ACCESS_TOKEN` - Go to your Profile settings in Home Assistant, scroll down to the Long-Lived
     Access Tokens section and generate a new token
 11. Run the code in the Scriptable app, and it should hopefully show a widget containing usage data! 
-You can then add the widget to your home screen by long-pressing on your home screen until you get the `+` button
-in the upper-left corner of the screen. Press this button and search for Scriptable, then select the medium size
-widget.
+12. You can add the widget to your home screen by long-pressing on your home screen until the icons start dancing and
+you see a `+` button in the upper-left corner of the screen. Press this button and search for Scriptable, then select 
+the medium size widget, and select the newly added script. You can also configure what happens when you tap the
+widget on the home screen by setting "When Interacting" - I set mine to "Run Script", as this causes the widget
+to load in a popup screen and refreshes the data.
