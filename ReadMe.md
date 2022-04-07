@@ -24,7 +24,7 @@ the same local network as your inverter (e.g. on a Raspberry Pi or home server)
 
 Here is a screenshot of the widget running on an iPhone:
 
-![Screenshot](images/screenshot.jpg | width=800)
+![Screenshot](images/screenshot.jpg)
 
 ## Notes
 
