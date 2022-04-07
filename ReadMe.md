@@ -26,6 +26,23 @@ Here is a screenshot of the widget running on an iPhone:
 
 <img src="https://github.com/DanielGallo/GivEnergy-Scriptable-Widget/blob/master/images/screenshot.jpg" width="350">
 
+## Widget details
+
+The widget summarises the following data:
+- **House (load)** - the power demands of the house (in kW), along with energy usage (in kWh)
+in the house from all sources today
+- **Solar** - the power provided by the solar array (in kW), along with total energy (in kWh) provided
+by the solar array today
+- **Grid (import)** - the power currently being imported by the grid (in kW), along with total 
+energy imported from the grid (in kWh) today. I don't currently include an export counter in the widget, but 
+I will look to add this soon
+- **Battery state** - the icon changes to reflect the battery's state of charge, and shows a 
+status label to indicate if it's Idle, Charging, or Discharging. A percentage is also shown, which
+represents the state of charge
+- **Peak** - the cost of imported energy used at peak times today, and the total energy (in kWh) used at peak times today
+- **Off-Peak** - the cost of imported energy used at off-peak times today, and the total energy (in kWh) used at off-peak times today
+- **Total** - the total cost of energy imported from the grid today, and the total energy imported from the grid today (in kWh)
+
 ## Notes
 
 - It took me a while to get this working, and I may have missed an important step in the instructions below - if you believe 
