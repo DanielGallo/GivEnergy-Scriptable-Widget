@@ -24,7 +24,7 @@ the same local network as your inverter (e.g. on a Raspberry Pi or home server)
 
 Here is a screenshot of the widget running on an iPhone:
 
-![Screenshot](images/screenshot.jpg)
+<img src="https://github.com/DanielGallo/GivEnergy-Scriptable-Widget/blob/master/images/screenshot.jpg" width="700">
 
 ## Notes
 
