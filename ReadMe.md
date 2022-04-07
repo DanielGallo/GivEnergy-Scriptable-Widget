@@ -8,6 +8,11 @@ This widget can be added to the home screen of an iOS device and refreshes autom
 power and energy usage throughout the day, along with costs. See below for prerequisites and instructions on
 how to configure the data sources.
 
+I created this widget as I wanted a quick way to look at current power and energy usage at 
+home and the associated costs. By having this widget on the home screen, I don't need
+to keep opening an app - instead the high-level details are automatically refreshed on an
+ongoing basis enabling you to quickly glance at them as you use your phone throughout the day.
+
 ## Prerequisites
 
 There are several prerequisites:
