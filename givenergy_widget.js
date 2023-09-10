@@ -245,6 +245,11 @@ async function createWidget() {
 
         item.attributes.forEach(attr => {
             let attribute = data.find(element => element.entity_id === attr.entity_id);
+
+            if (!attribute) {
+                console.error(`Attribute "${attr.entity_id}" could not be found in Home Assistant.`);
+            }
+
             let text = attribute.state;
 
             // Format the value if a converter function has been set
